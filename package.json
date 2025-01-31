@@ -1,0 +1,38 @@
+{
+  "name": "german-talkshows-api",
+  "version": "0.1.0",
+  "description": "API for German political talk shows schedule",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "NODE_ENV=development nodemon app.js",
+    "lint": "eslint .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "axios": "^1.7.9",
+    "xml2js": "^0.6.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3",
+    "eslint": "^8.56.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/german-talkshows-api"
+  },
+  "keywords": [
+    "api",
+    "german",
+    "talkshow",
+    "tv",
+    "markus-lanz",
+    "anne-will",
+    "politics"
+  ]
+}
