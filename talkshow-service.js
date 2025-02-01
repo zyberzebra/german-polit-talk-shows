@@ -1,6 +1,14 @@
 const axios = require("axios");
 const xml2js = require("xml2js");
-const config = require('./config');
+
+// Configuration from environment variables
+const config = {
+  rss: {
+    url: process.env.RSS_URL,
+    timeout: parseInt(process.env.RSS_TIMEOUT || '5000'),
+    userAgent: process.env.RSS_USER_AGENT || 'German-Talkshows-API/1.0'
+  }
+};
 
 /**
  * List of German political talk shows to track
@@ -76,6 +84,10 @@ function parseGermanDate(dateStr) {
  * @throws {Error} If fetching or parsing fails
  */
 async function getPoliticalTalkshows() {
+  if (!config.rss.url) {
+    throw new Error('RSS_URL environment variable is not set');
+  }
+
   try {
     const response = await axios.get(config.rss.url, {
       timeout: config.rss.timeout,

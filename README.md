@@ -16,9 +16,9 @@ A modern API and web interface for tracking German political talk shows. Get rea
 # Install dependencies
 npm install
 
-# Copy example config and adjust values
-cp config.example.js config.local.js
-# Edit config.local.js and set your RSS_URL
+# Set up environment variables
+cp .env.example .env
+# Edit .env and set your RSS_URL
 
 # Start the server
 npm start
@@ -26,10 +26,20 @@ npm start
 # Server runs on http://localhost:3000
 ```
 
-You can also use environment variables:
+You can also use environment variables directly:
 ```bash
-RSS_URL=your_rss_url npm start
+RSS_URL=your_rss_url RSS_TIMEOUT=5000 npm start
 ```
+
+## Environment Variables
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `RSS_URL` | RSS feed URL (required) | - |
+| `RSS_TIMEOUT` | Timeout for RSS requests in ms | 5000 |
+| `RSS_USER_AGENT` | User agent for RSS requests | German-Talkshows-API/1.0 |
+| `PORT` | Server port | 3000 |
+| `NODE_ENV` | Environment mode | production |
 
 ## Deployment
 
@@ -38,8 +48,10 @@ RSS_URL=your_rss_url npm start
 1. Fork this repository
 2. Create a new project on [Vercel](https://vercel.com)
 3. Import your forked repository
-4. Add the following environment variables in Vercel:
-   - `RSS_URL`: Your RSS feed URL
+4. Add environment variables in Vercel:
+   - `RSS_URL`: Your RSS feed URL (required)
+   - `RSS_TIMEOUT`: Optional, defaults to 5000
+   - `RSS_USER_AGENT`: Optional, defaults to German-Talkshows-API/1.0
 5. Deploy!
 
 The project includes a `vercel.json` configuration file that handles:
@@ -52,8 +64,8 @@ The project includes a `vercel.json` configuration file that handles:
 
 1. Clone the repository
 2. Install dependencies: `npm install`
-3. Copy config: `cp config.example.js config.local.js`
-4. Edit config.local.js with your settings
+3. Copy environment file: `cp .env.example .env`
+4. Edit .env with your settings
 5. Start development server: `npm run dev`
 6. Visit `http://localhost:3000`
 
@@ -88,7 +100,6 @@ Response:
 │   └── client.js       # Frontend JavaScript
 ├── app.js              # Express application
 ├── talkshow-service.js # TV show data service
-├── config.example.js   # Example configuration
 ├── vercel.json         # Vercel configuration
 └── package.json        # Dependencies
 ```
