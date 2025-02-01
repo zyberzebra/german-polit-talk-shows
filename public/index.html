@@ -4,59 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TV Talkshow Übersicht</title>
-    <style>
-.date-group {
-    margin: 1.5rem 0;
-  }
-
-  .date-header {
-    color: #666;
-    font-size: 0.9em;
-    font-weight: 500;
-    padding: 0.5rem 0;
-    border-bottom: 2px solid #eee;
-    margin-bottom: 0.5rem;
-    position: sticky;
-    top: 0;
-    background: var(--bg);
-    z-index: 1;
-  }
-
-  .show-item {
-    display: grid;
-    grid-template-columns: 60px 1fr auto;
-    gap: 1rem;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #f0f0f0;
-  }
-
-  .show-item:last-child {
-    border-bottom: none;
-  }
-
-  .show-time {
-    font-weight: 500;
-    color: var(--primary);
-  }
-
-  .show-title {
-    font-weight: 500;
-  }
-
-  .show-channel {
-    color: #666;
-    font-size: 0.9em;
-    text-align: left;
-  }
-
-  .show-description {
-    grid-column: 2 / 4;
-    color: #666;
-    font-size: 0.85em;
-    line-height: 1.4;
-    margin-top: 0.25rem;
-  }
-    </style>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
     <div class="container">
@@ -64,7 +12,7 @@
             📺 Heutige Polit-Talks
         </h1>
         <div class="show-grid" id="shows-container">
-
+            <!-- Content will be inserted here -->
         </div>
     </div>
     <script src="/client.js"></script>
