@@ -25,7 +25,8 @@ const TALKSHOWS = [
   "farben bekennen",
   "berlin direkt",
   "unter den linden",
-  "talk"
+  "talk",
+    "tagesschau"
 ];
 
 /**
