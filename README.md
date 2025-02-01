@@ -31,6 +31,32 @@ You can also use environment variables:
 RSS_URL=your_rss_url npm start
 ```
 
+## Deployment
+
+### Vercel
+
+1. Fork this repository
+2. Create a new project on [Vercel](https://vercel.com)
+3. Import your forked repository
+4. Add the following environment variables in Vercel:
+   - `RSS_URL`: Your RSS feed URL
+5. Deploy!
+
+The project includes a `vercel.json` configuration file that handles:
+- API routes
+- Static file serving
+- Environment variables
+- Build configuration
+
+### Local Development
+
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Copy config: `cp config.example.js config.local.js`
+4. Edit config.local.js with your settings
+5. Start development server: `npm run dev`
+6. Visit `http://localhost:3000`
+
 ## API Usage
 
 ### Get All Shows
@@ -58,31 +84,22 @@ Response:
 ```
 ├── public/              # Static frontend files
 │   ├── index.html      # Main webpage
+│   ├── style.css       # Styles
 │   └── client.js       # Frontend JavaScript
-├── src/                # Source files
-│   └── seo.json        # SEO configuration
-├── app.js              # Express application (main entry)
+├── app.js              # Express application
 ├── talkshow-service.js # TV show data service
 ├── config.example.js   # Example configuration
-├── config.local.js     # Local configuration (not in git)
+├── vercel.json         # Vercel configuration
 └── package.json        # Dependencies
 ```
 
 ## Technical Details
 
 - **Backend**: Node.js with Express
-- **Data Source**: RSS feed (configured in config.local.js)
+- **Data Source**: RSS feed (configured via env)
 - **Parser**: xml2js for RSS parsing
 - **Frontend**: Vanilla JavaScript with modern CSS
-
-## Development
-
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. Copy config: `cp config.example.js config.local.js`
-4. Edit config.local.js with your settings
-5. Start development server: `npm run dev`
-6. Visit `http://localhost:3000`
+- **Deployment**: Vercel-ready configuration
 
 ## Contributing
 
@@ -93,6 +110,10 @@ See [TODO.md](TODO.md) for planned features and improvements. Contributions are 
 3. Commit your changes
 4. Push to the branch
 5. Create a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
