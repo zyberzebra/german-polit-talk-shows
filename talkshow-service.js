@@ -26,21 +26,37 @@ const TALKSHOWS = [
   "berlin direkt",
   "unter den linden",
   "talk",
-    "tagesschau"
+  "tagesschau"
 ];
 
 /**
  * Parse a German date string in format "DD.MM | HH:mm" or "heute/morgen | HH:mm" to Date object
+ * Handles German timezone (Europe/Berlin) and daylight saving time automatically
  * @param {string} dateStr - Date string in German format
- * @returns {Date} JavaScript Date object
+ * @returns {Date} JavaScript Date object in local German time
  * @throws {Error} If date string is invalid
  */
 function parseGermanDate(dateStr) {
   try {
     const [datePart, timePart] = dateStr.split(' | ');
     const [hours, minutes] = timePart.split(':');
-    new Date();
+    
+    // Create date object for German timezone
+    const now = new Date();
     let date = new Date();
+    
+    // Set the timezone to German time
+    const timeZone = 'Europe/Berlin';
+    const formatter = new Intl.DateTimeFormat('de-DE', {
+      timeZone,
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    });
 
     if (datePart.includes('.')) {
       // Handle numerical date format (DD.MM)
@@ -61,13 +77,22 @@ function parseGermanDate(dateStr) {
       }
     }
 
-    // Set time
+    // Set time components
     date.setHours(parseInt(hours));
     date.setMinutes(parseInt(minutes));
     date.setSeconds(0);
     date.setMilliseconds(0);
 
-    return date;
+    // Format the date in German timezone
+    const parts = formatter.formatToParts(date);
+    const values = {};
+    for (const part of parts) {
+      values[part.type] = part.value;
+    }
+
+    // Construct ISO string with correct timezone
+    const isoString = `${values.year}-${values.month}-${values.day}T${values.hour}:${values.minute}:${values.second}`;
+    return new Date(isoString);
   } catch (error) {
     throw new Error(`Invalid date format: ${dateStr} (${error.message})`);
   }
@@ -114,9 +139,10 @@ async function getPoliticalTalkshows() {
       })
       .map(item => {
         const parts = item.title.split(' | ');
+        const date = parseGermanDate(`${parts[0]} | ${parts[1]}`);
         return {
           title: parts[3],
-          date: parseGermanDate(`${parts[0]} | ${parts[1]}`),
+          date: date.toISOString(), // Convert to ISO string for consistent timezone handling
           description: item.description,
           channel: parts[2],
           type: TALKSHOWS.find(show => parts[3].toLowerCase().includes(show))
