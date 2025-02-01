@@ -25,7 +25,7 @@ const TALKSHOWS = [
   "farben bekennen",
   "berlin direkt",
   "unter den linden",
-  "tagesschau"
+  "talk"
 ];
 
 /**
@@ -38,7 +38,7 @@ function parseGermanDate(dateStr) {
   try {
     const [datePart, timePart] = dateStr.split(' | ');
     const [hours, minutes] = timePart.split(':');
-    const now = new Date();
+    new Date();
     let date = new Date();
 
     if (datePart.includes('.')) {
