@@ -50,7 +50,7 @@ const TALKSHOWS = [
   { name: "anne will", patterns: ["anne will"], url: null },
   { name: "unter den linden", patterns: ["unter den linden"], url: null },
   { name: "talk", patterns: ["talk"], url: null },
-  { name: "caren miosga", patterns: ["caren miosga"], url: "https://www.ardmediathek.de/sendung/caren-miosga/Y3JpZDovL2Rhc2Vyc3RlLmRlL2NhcmVuLW1pb3NnYQ" },
+  { name: "caren miosga", patterns: ["caren miosga"], url: "https://www.daserste.de/information/talk/caren-miosga/index.html" },
   { name: "talking business", patterns: ["talking business"], url: null },
   { name: "talkwerk", patterns: ["talkwerk"], url: null },
   { name: "meet your master", patterns: ["meet your master"], url: null },
