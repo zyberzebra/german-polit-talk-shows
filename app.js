@@ -1,3 +1,6 @@
+// Load environment variables from .env file
+require('dotenv').config();
+
 // server.js
 const express = require("express");
 const { getPoliticalTalkshows } = require("./talkshow-service");
@@ -37,4 +40,8 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Environment: ${process.env.NODE_ENV}`);
+  console.log(`RSS URL configured: ${process.env.RSS_URL ? 'Yes' : 'No'}`);
+});

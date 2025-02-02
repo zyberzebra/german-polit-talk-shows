@@ -84,35 +84,7 @@ function renderShows(shows) {
   }).join('') || '<div class="error">Keine anstehenden Talkshows</div>';
 }
 
-  function formatDate(date) {
-    return date.toLocaleDateString('de-DE', {
-      day: '2-digit',
-      month: '2-digit',
-      weekday: 'short'
-    }).replace(/,/, '');
-  }
-
-  function formatTime(date) {
-    return date.toLocaleTimeString('de-DE', {
-      hour: '2-digit',
-      minute: '2-digit'
-    });
-  }
-
-
 // Hilfsfunktion für Datumsformatierung
-function formatGermanDateTime(date) {
-  return date.toLocaleString("de-DE", {
-    weekday: "short",
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    timeZone: "Europe/Berlin",
-  });
-}
-
 // Auto-Refresh alle 10 Minuten (korrigiertes Intervall)
 setInterval(loadShows, 600000); // 600.000 ms = 10 Minuten
 loadShows(); // Initial load
