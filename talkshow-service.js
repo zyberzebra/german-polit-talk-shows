@@ -1,5 +1,13 @@
 const axios = require("axios");
 
+// Cache implementation
+let cache = {
+  data: null,
+  timestamp: null
+};
+
+const CACHE_DURATION = 2 * 60 * 60 * 1000; // 2 hours in milliseconds
+
 // Configuration from environment variables
 const config = {
   api: {
@@ -150,7 +158,7 @@ function findMatchingShow(title) {
 }
 
 /**
- * Fetch and parse political talk shows
+ * Fetch and parse political talk shows with caching
  * @returns {Promise<Array<{
  *   title: string,
  *   date: string,
@@ -165,7 +173,14 @@ function findMatchingShow(title) {
  * @throws {Error} If fetching or parsing fails
  */
 async function getPoliticalTalkshows() {
-  console.log(`Fetching shows from API`);
+  // Check if we have valid cached data
+  const now = Date.now();
+  if (cache.data && cache.timestamp && (now - cache.timestamp) < CACHE_DURATION) {
+    console.log('Serving cached shows data');
+    return cache.data;
+  }
+
+  console.log(`Fetching fresh shows data from API`);
   
   try {
     const response = await axios.get(config.api.url, {
@@ -207,6 +222,10 @@ async function getPoliticalTalkshows() {
         }
       }
     }
+
+    // Update cache
+    cache.data = shows;
+    cache.timestamp = Date.now();
 
     return shows;
   } catch (error) {
