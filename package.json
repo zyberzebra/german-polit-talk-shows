@@ -5,20 +5,20 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "NODE_ENV=development nodemon app.js",
+    "dev": "nodemon app.js --ignore 'public/*'",
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "vercel-build": "echo 'Building...'"
   },
   "dependencies": {
-    "express": "^4.21.2",
     "axios": "^1.7.9",
-    "xml2js": "^0.6.2",
-    "dotenv": "^16.4.1"
+    "dotenv": "^16.4.1",
+    "express": "^4.21.2",
+    "xml2js": "^0.6.2"
   },
   "devDependencies": {
-    "nodemon": "^3.0.3",
-    "eslint": "^8.56.0"
+    "eslint": "^8.56.0",
+    "nodemon": "^3.1.9"
   },
   "engines": {
     "node": ">=18.0.0"

@@ -70,8 +70,16 @@ function renderShows(shows) {
                 minute: '2-digit' 
               })}
             </div>
-            <div class="show-title">${show.title}</div>
-            <div class="show-channel">${show.channel}</div>
+            <div class="show-title">
+              ${show.showUrl ? 
+                `<a href="${show.showUrl}" target="_blank">${show.title}</a>` : 
+                show.title}
+            </div>
+            <div class="show-channel">
+              ${show.channelUrl ? 
+                `<a href="${show.channelUrl}" target="_blank">${show.channel}</a>` : 
+                show.channel}
+            </div>
             ${show.description ? `
               <div class="show-description">
                 ${show.description.replace(/<\/?[^>]+(>|$)/g, "")}
